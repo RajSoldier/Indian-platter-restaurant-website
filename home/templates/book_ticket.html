@@ -1,0 +1,8 @@
+<h2>Book a Ticket for {{ event.title }}</h2>
+<p>Date: {{ event.date|date:"F d, Y - H:i" }}</p>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Confirm Booking</button>
+</form>

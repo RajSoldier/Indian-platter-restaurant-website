@@ -1,0 +1,372 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Indian Platter Restaurant</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+  <style>
+    *{ margin:0; padding:0; box-sizing:border-box; list-style:none; text-decoration:none; color:black; font-family:Verdana, Geneva, Tahoma, sans-serif; }
+    .logo img{ width:145px; }
+    .bar{ display:none; }
+    .header{ display:flex; justify-content:space-between; align-items:center; height:68px; padding:0 7vw; background-color:rgb(248,232,217); border-bottom:2px solid rgb(252,196,124); box-shadow:0 2px 20px rgb(253,124,124); }
+    .header ul{ display:flex; align-items:center; }
+    .header ul li:hover{ color:rgb(253,57,8); }
+    .nav ul li{ padding:0 15px; font-size:14px; font-weight:bold; font-family:"Times New Roman"; }
+    .selectmenu{ font-family:"Times New Roman"; }
+    .nav ul a{ text-decoration:none; }
+    .account{ flex:0.1; }
+    .account ul{ display:flex; justify-content:end; }
+    .account ul li{ padding:0 15px; font-size:18px; }
+
+    .carousel-caption h1{ color:rgb(254,255,254); font-size:400%; font-family:'Times New Roman', Times, serif; text-align:center; font-weight:bold; }
+    .carousel-caption p{ font-family:'Times New Roman', Times, serif; font-size:280%; color:goldenrod; font-weight:bolder; }
+    .d-block{ width:100%; height:640px; }
+
+    .menu-card{ background-color:black; }
+    h2{ font: size 400%; font-family:'Times New Roman', Times, serif; font-weight:bolder; text-align:center; }
+
+    .card-container{ display:flex; justify-content:space-around; flex-wrap:wrap; padding:20px; background-image:url("{% static 'image.png' %}"); }
+    .card{ background:black; border-radius:8px; box-shadow:0 4px 8px rgba(0,0,0,0.1); overflow:hidden; text-align:center; width:220px; margin:10px; transition:transform 0.2s; }
+    h3{ font-family:'Times New Roman', Times, serif; }
+    .card:hover{ transform:scale(1.05); }
+    .card img{ width:100%; height:250px; object-fit:cover; }
+    .card h3{ margin:10px 0; }
+    .card p{ padding:0 10px 10px; color:#555; }
+
+    .story{ font-family:'Times New Roman', Times, serif; margin:0; padding:0; display:flex; justify-content:center; align-items:center; height:90vh; color:white; background-color:black; background-image:url("{% static 'shape-2.png' %}"); }
+    .container{ text-align:center; max-width:800px; width:100%; padding:20px; }
+    .center-heading{ text-align:center; margin-bottom:20px; font-family:'Times New Roman', Times, serif; font-size:70px; color:white; }
+    .content{ display:flex; align-items:center; justify-content:center; gap:20px; flex-wrap:wrap; }
+    .image{ width:700px; max-width:100%; height:auto; }
+
+    .section-title{ color:white; font-family:'Times New Roman', Times, serif; text-align:center; grid-template-columns:1fr 1fr; font-size:60px; margin-bottom:5%; }
+    #special-dishes{ background-image:url("{% static 'special.jpg' %}"); background-size:cover; background-position:center; padding:40px 0; }
+
+    .dish-row{ display:flex; align-items:center; flex-wrap:wrap; gap:20px; margin:30px auto; max-width:1100px; }
+    .dish-image{ flex:1; text-align:center; }
+    .dish-image img{ width:100%; max-width:500px; border-radius:8px; }
+    .dish-info{ flex:1; padding:0 20px; }
+    .dish-info h3{ font-size:1.8rem; font-weight:bold; color:#cb5422; margin-bottom:5px; }
+    .dish-info .price{ font-size:1.4rem; font-weight:bold; color:#666; margin-bottom:15px; display:block; }
+    .dish-info p{ font-size:1.2rem; line-height:1.6; color:white; }
+    .reverse .dish-image{ order:2; }
+    .reverse .dish-info{ order:1; }
+
+    .text{ max-width:500px; text-align:center; font-family:'Times New Roman', Times, serif; color:white; font-size:20px; }
+
+    .upcoming-events{ background-color:black; padding:50px 0; background-image:url("{% static 'image1.jpg' %}"); background-size:cover; background-position:center; }
+    .events-container{ display:flex; flex-wrap:wrap; justify-content:center; gap:20px; }
+    .event-card{ background-color:white; border-radius:8px; box-shadow:0 4px 6px rgba(0,0,0,0.1); overflow:hidden; width:300px; height:450px; transition:transform 0.3s ease; }
+    .event-card:hover{ transform:translateY(-5px); }
+    .event-image,.event-image-placeholder{ width:100%; height:250px; object-fit:cover; }
+    .event-image-placeholder{ background-color:#f0f0f0; display:flex; align-items:center; justify-content:center; color:#777; }
+    .event-details{ padding:10px; background-color:#f7f3f1; }
+    .event-details h3{ margin:0 0 10px; color:#333; font-family:'Times New Roman', Times, serif; }
+    .event-date,.event-location{ font-size:14px; color:#666; margin-bottom:5px; }
+    .event-date i,.event-location i{ margin-right:5px; color:#fc7c7c; }
+    .event-description{ font-size:14px; color:#555; margin-bottom:15px; }
+    .btn-primary{ background-color:#fc7c7c; border-color:#fc7c7c; color:white; }
+    .btn-primary:hover{ background-color:#fd3908; border-color:#fd3908; }
+    .no-events{ text-align:center; color:#666; font-style:italic; }
+
+    .feedback-wrapper{ background-image:url("{% static 'image1.jpg' %}"); background-size:cover; background-position:center; min-height:100vh; display:flex; justify-content:center; align-items:center; padding:20px; }
+    .feedback-system{ max-width:600px; margin:20px auto; padding:30px; background-color:rgba(255,255,255,0.9); border-radius:12px; box-shadow:0 4px 6px rgba(0,0,0,0.1); }
+    .feedback-system h2{ color:#2c3e50; border-bottom:2px solid #3498db; padding-bottom:10px; margin-top:0; font-family:'Arial', sans-serif; }
+    .form-group{ margin-bottom:20px; }
+    .form-group label{ display:block; margin-bottom:8px; font-weight:bold; color:#34495e; }
+    .form-group textarea{ width:100%; padding:10px; border:1px solid #bdc3c7; border-radius:6px; resize:vertical; font-family:'Arial', sans-serif; }
+    .form-group ul{ list-style-type:none; padding:0; }
+    .form-group li{ display:inline-block; margin-right:20px; }
+    button[type="submit"]{ background-color:#3498db; color:white; padding:12px 20px; border:none; border-radius:6px; cursor:pointer; font-size:16px; transition:background-color 0.3s ease; }
+    button[type="submit"]:hover{ background-color:#2980b9; }
+    .feedback-item{ background-color:white; border:1px solid #ecf0f1; border-radius:8px; padding:20px; margin-top:20px; transition:box-shadow 0.3s ease; }
+    .feedback-item:hover{ box-shadow:0 2px 10px rgba(0,0,0,0.1); }
+    .feedback-item h3{ margin-top:0; color:#2c3e50; font-family:'Arial', sans-serif; }
+    .feedback-item p{ margin-bottom:0; color:#34495e; }
+
+    footer{ background-color:white; background-image:url("{% static 'footer-bg.jpg' %}"); padding:40px 0; text-align:center; }
+    .contact-card{ background-color:rgb(6,6,6); background-image:url("{% static 'footer-form-bg.png' %}"); color:white; padding:30px; border-radius:10px; margin:0 auto; max-width:500px; box-shadow:0px 4px 8px rgba(218,214,214,0.3); position:relative; }
+    footer h4{ margin-bottom:15px; font-weight:600; }
+    footer p{ margin-bottom:10px; color:white; font-family:'Times New Roman', Times, serif; }
+    .social-media{ margin-top:20px; position:relative; }
+    .fab{ color:rgb(247,238,238); margin:0 10px; transition:color 0.3s; }
+    .fab:hover{ color:#f1c40f; }
+  </style>
+
+  <script>
+    function navigateToPage(selectElement){
+      const selectedMenu = selectElement.value;
+      if(selectedMenu){ window.location.href = selectedMenu; }
+    }
+  </script>
+</head>
+<body>
+
+<header>
+  <div class="header">
+    <div class="logo">
+      <img src="{% static 'logo2.png' %}" alt="Indian Platter logo">
+    </div>
+    <div class="bar">
+      <i class="fa-solid fa-bars"></i>
+      <i class="fa-solid fa-xmark" id="hdcross"></i>
+    </div>
+    <div class="nav">
+      <ul id="Navbar">
+        <a href="#"><li>Home</li></a>
+        <div class="selectmenu">
+          <label for="menu" style="font-family:Times New Roman;padding:0 15px;font-size:14px;font-weight:bold;">Select menu:</label>
+          <select id="menu" name="menu" onchange="navigateToPage(this)">
+            <option value="">--Select--</option>
+            <option value="/starter/">Starter</option>
+            <option value="/maincourse">Main Course</option>
+            <option value="/deserts">Desserts</option>
+            <option value="/drinks">Drinks</option>
+          </select>
+        </div>
+        <a href="/our_chefs"><li>Our Chefs</li></a>
+        <a href="/about"><li>About us</li></a>
+        <a href="/reservation" class="btn btn-primary reservation-btn" style="font-family:Times New Roman">Book a table</a>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<!-- Carousel -->
+<div id="demo" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+    <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+    <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+  </div>
+
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{% static 'dosa.jpg' %}" alt="Slide 1" class="d-block" width="100%">
+      <div class="carousel-caption">
+        <h1>For the love of delicious food</h1>
+        <p>Come with family & feel the joy of mouthwatering food</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'thali.jpg' %}" alt="Slide 2" class="d-block" width="100%">
+      <div class="carousel-caption">
+        <h1>Flavors Inspired by the Seasons</h1>
+        <p>Come with family & feel the joy of mouthwatering food</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'nonveg.jpg' %}" alt="Slide 3" class="d-block" width="100%">
+      <div class="carousel-caption">
+        <h1>Where every flavor tells a story</h1>
+        <p>Come with family & feel the joy of mouthwatering food</p>
+      </div>
+    </div>
+  </div>
+
+  <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+</div>
+
+<!-- Cards menu -->
+<div class="menu-card">
+  <h2 style="color:white;">We Offer Top Notch</h2>
+  <div class="card-container">
+    <div class="card">
+      <img src="{% static 'starter.jpg' %}" alt="Starters">
+      <h3>Starters</h3>
+      <p>A Perfect Beginning</p>
+      <a href="/starter/" class="btn-text hover-underline label-2" style="color:black">View Menu</a>
+    </div>
+    <div class="card">
+      <img src="{% static 'main course.avif' %}" alt="Main Course">
+      <h3>Main Course</h3>
+      <p>Delicious Entrées</p>
+      <a href="/maincourse/" class="btn-text hover-underline label-2" style="color:black">View Menu</a>
+    </div>
+    <div class="card">
+      <img src="{% static 'desert.jpeg' %}" alt="Desserts">
+      <h3>Deserts</h3>
+      <p>A Sweet Finale</p>
+      <a href="/deserts/" class="btn-text hover-underline label-2" style="color:black">View Menu</a>
+    </div>
+    <div class="card">
+      <img src="{% static 'drink.jpg' %}" alt="Drinks">
+      <h3>Drinks</h3>
+      <p>Cheers to Flavor</p>
+      <a href="/drinks" class="btn-text hover-underline label-2" style="color:black">View Menu</a>
+    </div>
+  </div>
+</div>
+
+<!-- Our story -->
+<div class="story">
+  <div class="container">
+    <h1 class="center-heading">Our Story</h1>
+    <div class="content">
+      <img src="{% static 'rest.jpg' %}" alt="Restaurant" class="image">
+      <p class="text">
+        Step into The Indian Platter, where each dish tells the story of India's rich culinary heritage...
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Special dishes -->
+<div class="dish">
+  <section id="special-dishes">
+    <div class="container-dishes">
+      <h2 class="section-title" aria-labelledby="dish-label">Special Dishes</h2>
+
+      <div class="dish-row">
+        <div class="dish-image">
+          <img src="{% static 'tandoori platter.webp' %}" alt="Tandoori Platter">
+        </div>
+        <div class="dish-info">
+          <h3>Tandoori Platter</h3>
+          <span class="price">₹750</span>
+          <p>A combination of tandoori favorites including chicken tikka, seekh kebabs, and tandoori prawns, served with mint chutney and onion salad.</p>
+        </div>
+      </div>
+
+      <div class="dish-row reverse">
+        <div class="dish-info">
+          <h3>Royal Thali</h3>
+          <span class="price">₹600</span>
+          <p>A grand assortment of Indian dishes served in one platter: paneer butter masala, dal makhani, vegetable biryani, naan, papad, pickles, and gulab jamun.</p>
+        </div>
+        <div class="dish-image">
+          <img src="{% static 'royal thali.jpg' %}" alt="Royal Thali">
+        </div>
+      </div>
+
+      <div class="dish-row">
+        <div class="dish-image">
+          <img src="{% static 'Prawns curry (1).webp' %}" alt="Prawn Malai Curry">
+        </div>
+        <div class="dish-info">
+          <h3>Prawn Malai Curry</h3>
+          <span class="price">₹700</span>
+          <p>Succulent prawns cooked in a rich coconut-based curry, flavored with mustard seeds, curry leaves, and green chilies.</p>
+        </div>
+      </div>
+
+      <div class="dish-row reverse">
+        <div class="dish-info">
+          <h3>Gulab Jamun with Ice Cream</h3>
+          <span class="price">₹200</span>
+          <p>A fiery mutton curry from Rajasthan, slow-cooked with red chilies, garlic, and aromatic spices.</p>
+        </div>
+        <div class="dish-image">
+          <img src="{% static 'gulabjamun.jpeg' %}" height="300" width="120" style="margin-bottom:5%" alt="Gulab Jamun with Ice Cream">
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Upcoming events -->
+<div class="upcoming-events">
+  <div class="container">
+    <h2 class="center-heading">Upcoming Events</h2>
+    <div class="events-container">
+      {% if upcoming_events %}
+        {% for event in upcoming_events %}
+          <div class="event-card">
+            {% if event.image %}
+              <img src="{{ event.image.url }}" alt="{{ event.title }}" class="event-image">
+            {% else %}
+              <div class="event-image-placeholder">No Image</div>
+            {% endif %}
+            <div class="event-details">
+              <h3>{{ event.title }}</h3>
+              <p class="event-date">
+                <i class="fas fa-calendar-alt"></i>
+                {{ event.date|date:"F d, Y - H:i" }}
+              </p>
+              <p class="event-location">
+                <i class="fas fa-map-marker-alt"></i>
+                {{ event.location }}
+              </p>
+              <p class="event-description">{{ event.description|truncatewords:20 }}</p>
+              <a href="{% url 'book_ticket' event.id %}" class="btn btn-primary">Book a Ticket</a>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p class="no-events">No upcoming events at the moment.</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<!-- Feedback -->
+<div class="feedback-wrapper">
+  <div class="feedback-system">
+    <h2>Leave your feedback</h2>
+    <form method="post" action="{% url 'index' %}">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="id_message">Your message:</label>
+        {{ form.message }}
+      </div>
+      <div class="form-group">
+        <label>Would you recommend us?</label>
+        {{ form.recommendation }}
+      </div>
+      <button type="submit">Submit Feedback</button>
+    </form>
+
+    <h2>Recent Feedbacks</h2>
+    {% if feedbacks %}
+      {% for feedback in feedbacks %}
+        <div class="feedback-item">
+          <h3>Feedback #{{ forloop.counter }} - {% if feedback.recommendation %}Recommended{% else %}Not Recommended{% endif %}</h3>
+          <p>{{ feedback.message }}</p>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>No feedbacks yet. Be the first to leave one!</p>
+    {% endif %}
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="contact-card">
+    <h4>Contact Us</h4>
+    <p>📞 Phone: +91 8080829369</p>
+    <p>Email: info@indianplatterrestaurant.com</p>
+    <p>📍 Address: 123 Food Street, Coloba, Mumbai, India</p>
+    <p>Landmark: Near City Mall</p>
+    <p>🕒 Monday - Friday: 10:00 AM - 10:00 PM</p>
+    <p>Saturday - Sunday: 9:00 AM - 11:00 PM</p>
+  </div>
+  <div class="social-media">
+    <a href="#" class="fab fa-facebook-f"></a>
+    <a href="#" class="fab fa-twitter"></a>
+    <a href="#" class="fab fa-instagram"></a>
+    <a href="#" class="fab fa-youtube"></a>
+  </div>
+  <p style="color:rgb(237,233,233);">&copy; 2024 Indian Platter Restaurant. All rights reserved.</p>
+</footer>
+
+<!-- Bootstrap JS Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

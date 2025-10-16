@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Indian Platter Restaurant</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f3e8;
+            background-image: 
+                linear-gradient(rgba(255,153,51,0.1) 2px, transparent 2px),
+                linear-gradient(90deg, rgba(255,153,51,0.1) 2px, transparent 2px),
+                linear-gradient(rgba(19,136,8,0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(19,136,8,0.1) 1px, transparent 1px);
+            background-size: 50px 50px, 50px 50px, 10px 10px, 10px 10px;
+            background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+        }
+        .about-us {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        .about-us::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #ff9933, #ffffff, #138808);
+        }
+        .about-us h1 {
+            color: #8e3200;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            position: relative;
+        }
+        .about-us h1::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: #ff9933;
+            margin: 10px auto;
+        }
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 40px;
+        }
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+        .about-image img {
+            max-width: 100%;
+            height: 400px;
+            width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .signature {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 28px;
+            color: #8e3200;
+            margin-top: 20px;
+            text-align: right;
+        }
+        .highlight {
+            color: #ff9933;
+            font-weight: 600;
+        }
+        .decorative-spice {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.1;
+            z-index: -1;
+        }
+        .spice-1 {
+            top: 20px;
+            right: 20px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%23ff9933' d='M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z'/%3E%3C/svg%3E");
+        }
+        .spice-2 {
+            bottom: 20px;
+            left: 20px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%23138808' d='M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z'/%3E%3C/svg%3E");
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body>
+    <section class="about-us">
+        <div class="decorative-spice spice-1"></div>
+        <div class="decorative-spice spice-2"></div>
+        <h1>Discover Indian Platter</h1>
+        <div class="about-content">
+            <div class="about-text">
+                <p>Welcome to <span class="highlight">Indian Platter</span>, where every dish tells a story of tradition, flavor, and passion. Since 2010, we've been on a culinary journey to bring you the most authentic and delightful Indian cuisine.</p>
+                <p>Our chefs, masters of their craft, hail from diverse regions of India. They infuse each recipe with generations of culinary wisdom, creating a symphony of flavors that dance on your palate. From the fiery curries of the South to the delicate aromatics of the North, our menu is a vibrant tapestry of India's rich gastronomic heritage.</p>
+                <p>At Indian Platter, we believe that dining is an experience that engages all senses. Our warm, inviting ambiance, attentive service, and commitment to using only the finest, freshest ingredients ensure that each visit is nothing short of extraordinary.</p>
+                <p class="signature">Savor the magic of India with us!</p>
+            </div>
+            <div class="about-image" >
+                <img src="/static/about us.jpg" alt="Indian Platter Restaurant Ambiance" >
+            </div>
+        </div>
+    </section>
+</body>
+</html>
